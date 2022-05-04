@@ -47,6 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     const QString s1 = QString::fromStdString( com1() );
     ui -> textBrowser_2->append(s1);
+
+    QProcess p0;
+    p0.QProcess::start("docker images");
+    p0.waitForFinished(-1);
+    ui->textBrowser->setText(p0.readAllStandardOutput());
 }
 
 MainWindow::~MainWindow()
@@ -62,12 +67,33 @@ void MainWindow::on_pushButton_clicked()
         ui->textBrowser->append(ping_process->readAllStandardOutput());
     });
     ui->statusbar->showMessage("Container started...");
-    ping_process->QProcess::start("docker", QStringList() << "run -it --rm -p 5901:5901 -p 6080:6080 --shm-size=2G mathworks/matlab:r2022a -vnc");
+    ping_process->QProcess::start("docker", QStringList() << "run-it" << "--rm" << "-p" << "5901:5901" << "-p" << "6080:6080" <<"--shm-size=2G" << "mathworks/matlab:r2022a" << "-vnc");
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
     ping_process->terminate();
+    system("notify-send 'Methlab - Launcher' \"Container stopped.\"");
+    ui->statusbar->showMessage("Container stopped...");
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QProcess p;
+    p.QProcess::start("docker ps");
+    p.waitForFinished(-1);
+    ui->textBrowser_2->setText(p.readAllStandardOutput());
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    system("notify-send 'Methlab - Launcher' \"Opening VNC Viewer...\"");
+    QProcess p1;
+    p1.QProcess::start("vncviewer -useaddressbook matlab");
+    p1.waitForFinished(-1);
+
 }
 
