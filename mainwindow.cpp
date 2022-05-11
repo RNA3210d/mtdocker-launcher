@@ -14,7 +14,7 @@
 #include <QTextStream>
 using namespace std;
   QObject *parent;
-  QProcess* ping_process = new QProcess(parent);
+  QProcess* launch = new QProcess(parent);
 
 std::string com1()
 {
@@ -63,17 +63,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     system("notify-send 'Methlab - Launcher' \"Starting container in VNC mode...\"");
-    connect(ping_process, &QProcess::readyReadStandardOutput, [=] {
-        ui->textBrowser->append(ping_process->readAllStandardOutput());
-    });
+    launch->start("matlab-doku");
+    launch->waitForFinished(-1);
+    ui->textBrowser_2->setText(launch->readAllStandardOutput());
     ui->statusbar->showMessage("Container started...");
-    ping_process->QProcess::start("docker", QStringList() << "run-it" << "--rm" << "-p" << "5901:5901" << "-p" << "6080:6080" <<"--shm-size=2G" << "mathworks/matlab:r2022a" << "-vnc");
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    ping_process->terminate();
+    launch->terminate();
     system("notify-send 'Methlab - Launcher' \"Container stopped.\"");
     ui->statusbar->showMessage("Container stopped...");
 }
