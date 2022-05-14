@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +14,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MATLAB Docker Container Launchpad</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="matlab"/>
+  </property>
+  <property name="toolTip">
+   <string>MATLAB Docker Launcher'</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -39,7 +51,8 @@
          <string>Refresh Info</string>
         </property>
         <property name="icon">
-         <iconset theme="emblem-synchronizing"/>
+         <iconset theme="emblem-synchronizing">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -49,7 +62,8 @@
          <string>Quit</string>
         </property>
         <property name="icon">
-         <iconset theme="application-exit"/>
+         <iconset theme="application-exit">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -76,7 +90,8 @@
          <string>Start Container</string>
         </property>
         <property name="icon">
-         <iconset theme="media-playback-start"/>
+         <iconset theme="media-playback-start">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -86,7 +101,8 @@
          <string>Launch VNC </string>
         </property>
         <property name="icon">
-         <iconset theme="preferences-desktop-display"/>
+         <iconset theme="preferences-desktop-display">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -96,7 +112,8 @@
          <string>Stop Container</string>
         </property>
         <property name="icon">
-         <iconset theme="process-stop"/>
+         <iconset theme="process-stop">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>

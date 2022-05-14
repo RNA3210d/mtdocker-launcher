@@ -63,7 +63,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     system("notify-send 'Methlab - Launcher' \"Starting container in VNC mode...\"");
-    launch->start("matlab-doku");
+    QString path="/bin/bash";
+    QString command="docker run -it --rm -p 5901:5901 -p 6080:6080 --shm-size=2G mathworks/matlab:r2022a -vnc";
+    launch->start(path,command.split(" "));
     launch->waitForFinished(-1);
     ui->textBrowser_2->setText(launch->readAllStandardOutput());
     ui->statusbar->showMessage("Container started...");
