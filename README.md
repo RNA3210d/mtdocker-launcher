@@ -1,3 +1,3 @@
-# methlab-launcher
+# mtdocker-launcher
 # Work in progress
 Qt based gui launcher for my matlab docker install.
