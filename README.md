@@ -1,3 +1,3 @@
 # mtdocker-launcher
-# Work in progress
+# Backend development pending
 Qt based gui launcher for my matlab docker install.
